@@ -10,11 +10,15 @@ from States.Off import Off
 from States.White import White
 from States.RGB import RGB
 
+running = True
+
 class mqtt_client:
 
     states = None
     strip = None
     handler = None
+    #global running
+    #running = True
 
     def __init__(self, states, strip):
         self.states = states
@@ -23,7 +27,8 @@ class mqtt_client:
         
         self.test()
         
-        running = True
+        global running
+        
         try:
             t = threading.Thread(target=self.client.loop_forever,name='mqttAerver')
             t.daemon = True
@@ -31,9 +36,8 @@ class mqtt_client:
             print("MQTT is started - waiting for further action")
             while running:
                 time.sleep(1)
-        except KeyboardInterrupt:
-            print("Forced Shutdown - Threat joined")
             t.join()
+            print("Thread joined")
         except:
             t.join()
             print("Threat joined")
@@ -48,20 +52,26 @@ class mqtt_client:
         
         
     #Setup MQTT:
-        
             
     # The callback for when the client receives a CONNACK response from the server.
     def on_connect(client, userdata, flags, rc):
         #logging.info("Mqtt connection established - " +str(rc))
         print("Connected")
-        client.subscribe("state")
+        client.subscribe("ambilightLamp/#")
         # Subscribing in on_connect() means that if we lose the connection and
         # reconnect then subscriptions will be renewed.
         
 
     # The callback for when a PUBLISH message is received from the server.
     def on_message(client, userdata, msg):
-        print(msg.topic+" "+str(msg.payload))    
+        
+        global running
+        
+        print(msg.topic+" "+str(msg.payload))
+        if msg.topic == "ambilightLamp/off":
+            running = False
+            print("ambilightLamp/off called")
+            
         
     client = mqtt.Client()
     client.on_connect = on_connect
