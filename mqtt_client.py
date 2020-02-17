@@ -1,46 +1,65 @@
 import paho.mqtt.client as mqtt
-import errno
-from socket import error as socket_error
 import logging
 import time
-import threading
+from multiprocessing import Process, Manager
 
 from StateHandler import StateHandler
 from States.Off import Off
 from States.White import White
 from States.RGB import RGB
 
-running = True
+
+manager = Manager()
+managedRunning = manager.dict({'mqttRunning' : True})
 
 class mqtt_client:
 
     states = None
     strip = None
     handler = None
-    #global running
-    #running = True
 
     def __init__(self, states, strip):
+        #Global Variables
+        global managedRunning
+        
+        #own Variables
         self.states = states
         self.strip = strip
         self.handler = StateHandler(strip, states)
         
+        #Testing
         self.test()
         
-        global running
         
         try:
-            t = threading.Thread(target=self.client.loop_forever,name='mqttAerver')
-            t.daemon = True
-            t.start()
+            #create Process
+            p = Process(target=self.client.loop_forever)
+            p.start()
+            
             print("MQTT is started - waiting for further action")
-            while running:
+            
+            #leave main thread open untill mqtt is shutdown
+            while managedRunning['mqttRunning']:
                 time.sleep(1)
-            t.join()
+            
+            #mqtt is required to shutdown -> proicess is terminated and joined
+            print("Exited MQTT Server")
+            p.terminate()
+            p.join()
+
             print("Thread joined")
         except:
-            t.join()
-            print("Threat joined")
+            p.terminate()
+            p.join()
+            print("ERROR: Error in mqtt process -> terminated process")
+
+        #current Test status to leave main thread open after process termination - may be removed in future releases
+        try:
+            while True:
+                print("I´m still up and running :)")
+                time.sleep(5)
+        except:
+            print("Exit Programm")
         
     def test(self):
         try:
@@ -52,11 +71,11 @@ class mqtt_client:
         
         
     #Setup MQTT:
-            
+                        
     # The callback for when the client receives a CONNACK response from the server.
     def on_connect(client, userdata, flags, rc):
         #logging.info("Mqtt connection established - " +str(rc))
-        print("Connected")
+        print("MQTT is connected")
         client.subscribe("ambilightLamp/#")
         # Subscribing in on_connect() means that if we lose the connection and
         # reconnect then subscriptions will be renewed.
@@ -65,12 +84,12 @@ class mqtt_client:
     # The callback for when a PUBLISH message is received from the server.
     def on_message(client, userdata, msg):
         
-        global running
+        global managedRunning
         
         print(msg.topic+" "+str(msg.payload))
+        
         if msg.topic == "ambilightLamp/off":
-            running = False
-            print("ambilightLamp/off called")
+            managedRunning['mqttRunning'] = False
             
         
     client = mqtt.Client()
