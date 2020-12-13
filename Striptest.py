@@ -64,7 +64,7 @@ def turn_on_test():
         
     for i in range(255):
         for j in range (58):
-            urrent = pixels[j][3]
+            current = pixels[j][3]
             if current <= 255:
                 pixels[j] = (0,0,0,current + 1)
         pixels.show()
