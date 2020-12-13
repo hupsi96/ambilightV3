@@ -98,4 +98,4 @@ class mqtt_client:
     client.on_connect = on_connect
     client.on_message = on_message
     
-    client.connect("127.0.0.1", 1883, 60) #Connect to HA IP Adress
+    client.connect("192.168.178.73", 1883, 60) #Connect to HA IP Adress
