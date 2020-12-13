@@ -6,6 +6,7 @@ from States.RGB import RGB
 
 import board
 import neopixel
+import time
 
 from mqtt_client import mqtt_client
 import logging
@@ -30,6 +31,14 @@ def main():
     strip = neopixel.NeoPixel(
         pixel_pin, num_pixels, brightness=0.2, auto_write=False, pixel_order=ORDER
     )
+    #test Strips
+    strip.fill((255,0,0,0))
+    strip.show()
+    time.sleep(2)
+    strip.fill((0,0,0,0))
+    strip.show()
+    time.sleep(2)
+    
     
     #define States
     white = White(strip)
