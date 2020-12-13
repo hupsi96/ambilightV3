@@ -56,7 +56,7 @@ class mqtt_client:
         #current Test status to leave main thread open after process termination - may be removed in future releases
         try:
             while True:
-                print("I´m still up and running :)")
+                print("Im still up and running")
                 time.sleep(5)
         except:
             print("Exit Programm")
@@ -88,12 +88,14 @@ class mqtt_client:
         
         print(msg.topic+" "+str(msg.payload))
         
-        if msg.topic == "ambilightLamp/off":
-            managedRunning['mqttRunning'] = False
+        #if msg.topic == "ambilightLamp/off":
+        #    managedRunning['mqttRunning'] = False
+        #if msg.topic == "ambilightLamp/light/switch":
+        #    if self.handler.getCurrentState() 
             
         
     client = mqtt.Client()
     client.on_connect = on_connect
     client.on_message = on_message
     
-    client.connect("127.0.0.1", 1883, 60)
+    client.connect("127.0.0.1", 1883, 60) #Connect to HA IP Adress
