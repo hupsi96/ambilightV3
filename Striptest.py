@@ -58,12 +58,12 @@ def turn_on_test():
     for j in range(i):
         current = pixels[j][3]
         if current <= 255:
-        pixels[j] = (0,0,0,current + 1)
+            pixels[j] = (0,0,0,current + 1)
     for i in range(255):
         for j in range (58):
             urrent = pixels[j][3]
             if current <= 255:
-            pixels[j] = (0,0,0,current + 1)
+                pixels[j] = (0,0,0,current + 1)
      
       
      
