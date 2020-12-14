@@ -152,6 +152,7 @@ class mqtt_client:
                 
             handler.handleRequest(rgb, msg, stripStorageTransfer, strip)
         elif msg.topic == "ambilightLamp/set/rgb":
+            print(msg.payload[0])
             input = tuple(map(int,str(msg.payload).split(',')))
             print("rgb")
             print(input)
