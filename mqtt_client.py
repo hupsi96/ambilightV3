@@ -8,7 +8,11 @@ from multiprocessing import Process, Manager
 from StateHandler import StateHandler
 from States.Off import Off
 from States.White import White
+<<<<<<< HEAD
 from States.RGB import RGBW
+=======
+from States.RGB import RGB
+>>>>>>> parent of 91f0c1d... refactor rgb to rgbw
 
 
 manager = Manager()
@@ -30,9 +34,9 @@ strip = neopixel.NeoPixel(
 )
 
 white = White(strip)
-rgbw = RGBW(strip)
+rgb = RGB(strip)
 off = Off(strip)
-handler = StateHandler(strip,[white,rgbw,off])
+handler = StateHandler(strip,[white,rgb,off])
 
 class mqtt_client:
 
@@ -88,7 +92,7 @@ class mqtt_client:
     def test(self):
         try:
             self.handler.handleRequest(White(self.strip))
-            self.handler.handleRequest(RGBW(self.strip))
+            self.handler.handleRequest(RGB(self.strip))
             self.handler.handleRequest(Off(self.strip))
         except AttributeError:
             print("No Handler set - connot test class")
@@ -112,7 +116,7 @@ class mqtt_client:
         global strip
         global handler
         global white
-        global rgbw
+        global rgb
         global off
         
         print(msg.topic+" "+str(msg.payload))
