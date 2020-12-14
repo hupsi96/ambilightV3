@@ -81,7 +81,7 @@ def turn_on_2_test():
             if currentTop < 255:
                 pixels[57-j] = (0,0,0,currentTop + 3)
         pixels.show()
-        time.sleep(0.1)
+        time.sleep(0.003)
     #time.sleep(5)
     
     for i in range(255):
@@ -93,7 +93,7 @@ def turn_on_2_test():
             if currentTop < 255:
                 pixels[57-j] = (0,0,0,currentTop + 1)
         pixels.show()
-        time.sleep(0.1)
+        time.sleep(0.003)
             
       
      
