@@ -7,10 +7,10 @@ class State:
     """
     strip = None
 
-    def handleRequest(self, stateHandler, event, msg):
+    def handleRequest(self, stateHandler, event, msg, stripStorage):
         pass
 
-    def entry(self, strip, msg):
+    def entry(self, strip, msg, stripStorage):
         pass
 
     def exit(self):

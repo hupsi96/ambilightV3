@@ -5,7 +5,7 @@ class Off:
     def __init__ (self, strip):
         self.__strip = strip
 
-    def entry(self, msg):
+    def entry(self, msg,stripStorage):
         print("Off: entry")
 
     def exit(self):
@@ -14,7 +14,7 @@ class Off:
     def redundant(self):
         print("No action required")
 
-    def handleRequest(self, stateHandler, event, msg):
+    def handleRequest(self, stateHandler, event, msg,stripStorage):
         print("Off: handleRequest")
         
         if event.__class__.__name__ == "White": 
