@@ -222,7 +222,7 @@ class mqtt_client:
             payload = str(msg.payload)[2:]
             payload = payload[:(len(payload)-1)]
             
-            handler.handleRequest(white, payload, stripStorageTransfer, strip)
+            #handler.handleRequest(white, payload, stripStorageTransfer, strip)
             try:
                 #create Process
                 p2 = Process(target=handler.handleRequest(white, msg, stripStorageTransfer, strip))
