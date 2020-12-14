@@ -1,6 +1,8 @@
 import paho.mqtt.client as mqtt
 import logging
 import time
+import board
+import neopixel
 from multiprocessing import Process, Manager
 
 from StateHandler import StateHandler
