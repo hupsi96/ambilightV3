@@ -15,6 +15,8 @@ class White:
         print("No action required")
 
     def handleRequest(self, stateHandler, event):
+        self.strip.fill(0,0,0,255)
+        self.strip.show()
         print("White: handleRequest")
 
         if event.__class__.__name__ == "RGB":
