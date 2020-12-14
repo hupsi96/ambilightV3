@@ -124,7 +124,7 @@ class mqtt_client:
         
 
     # The callback for when a PUBLISH message is received from the server.
-    def on_message(client, userdata, msg):
+    def on_message(self,client, userdata, msg):
         
         global managedRunning
         global strip
@@ -137,10 +137,10 @@ class mqtt_client:
         
         global stripStorage
         
-        if p2.is_alive():
+        if p2.is_alive(self):
             p2.terminate()
             p2.join()
-            print("p2 died: "+p2.is_alive())
+            print("p2 died: ")
             
         
         if msg.topic == "ambilightLamp/light/set" and str(msg.payload) == "b'OFF'":
