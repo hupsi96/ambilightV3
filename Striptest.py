@@ -51,6 +51,7 @@ def rainbow_cycle(wait):
         time.sleep(wait)
  
 def turn_on_test():
+    pixels.deinit()
     #pixels[10] = (100,0,0,0)
     #pixels.show()
     for i in range(58):
