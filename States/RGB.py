@@ -1,7 +1,7 @@
 import logging
 
 class RGB:
-
+    strip = None
     def __init__ (self, strip):
         self.__strip = strip
 
