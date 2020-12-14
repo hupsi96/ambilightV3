@@ -14,7 +14,7 @@ class Off:
     def redundant(self):
         print("No action required")
 
-    def handleRequest(self, stateHandler, event, msg,stripStorage):
+    def handleRequest(self, stateHandler, event, msg, stripStorage):
         print("Off: handleRequest")
         
         if event.__class__.__name__ == "White": 

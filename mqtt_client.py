@@ -118,6 +118,7 @@ class mqtt_client:
         global stripStorage
         
         global stripStorage
+        #if msg.topic != 
         for i in range(len(strip)):
             stripStorage[i] = strip[i]
         
