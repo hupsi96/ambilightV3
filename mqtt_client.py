@@ -142,7 +142,7 @@ class mqtt_client:
         if msg.topic == "ambilightLamp/set/brightness":
             for i in range(len(strip)):
                 current = stripStorage[i]
-                for j in range(len(current[i])-1):
+                for j in range(len(3):
                     current[i][j] = current[i][j] * (int(msg.payload) /255)
             handler.handleRequest(rgb,msg,stripStorage)
         elif msg.topic == "ambilightLamp/set/rgb":
