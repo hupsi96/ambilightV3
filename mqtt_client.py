@@ -83,9 +83,8 @@ class mqtt_client:
 
         #current Test status to leave main thread open after process termination - may be removed in future releases
         try:
-            #while True:
-            #    print("Im still up and running")
-            #    time.sleep(5)
+            while True:
+                time.sleep(5)
             #time.sleep(10)
             #managedRunning['mqttRunning'] = False
             #p.terminate()
