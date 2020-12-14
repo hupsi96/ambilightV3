@@ -12,9 +12,18 @@ from States.RGB import RGB
 
 
 manager = Manager()
-managedRunning = manager.dict({'mqttRunning' : True})
-managedRunningRGB = manager.dict({'rgbRunning' : False})
+managerDict = manager.dict()
+managerDict['mqttRunning'] = True
+managerDict['mqttMsg'] = "Not set yet"
+managerDict['mqttProcessed'] = False
 
+#managedRunning = manager.dict({'mqttRunning' : True})
+#managedMsg = manager.dict({'mqttMsg' : ""})
+#managedProcessed = manager.dict({'mqttProcessed' : False})
+
+################################################################################################################################################
+# Strip Config
+################################################################################################################################################
 # Choose an open pin connected to the Data In of the NeoPixel strip, i.e. board.D18
 # NeoPixels must be connected to D10, D12, D18 or D21 to work.
 pixel_pin = board.D18
@@ -30,6 +39,10 @@ strip = neopixel.NeoPixel(
     pixel_pin, num_pixels, brightness=0.2, auto_write=False, pixel_order=ORDER
 )
 
+################################################################################################################################################
+# Stated Config
+################################################################################################################################################
+
 white = White(strip)
 rgb = RGB(strip)
 off = Off(strip)
@@ -37,21 +50,19 @@ handler = StateHandler(strip,[white,rgb,off])
 
 stripStorage = [(0,0,0,0,0)]*num_pixels #(r,g,b,w,brightness)
 
-p2 = Process
+# main mqtt class
 class mqtt_client:
-
-
-    states = None
-    #handler = None
 
     def __init__(self, states, strp):
         #Global Variables
         global managedRunning
         global strip
         global handler
+        global managedMsg
+        global managedProcessed
         
         #own Variables
-        self.states = states
+        self.states = states # TODO: nötig?
         #self.strip = strp
         #self.handler = StateHandler(strp, states)
         
@@ -67,14 +78,15 @@ class mqtt_client:
             print("MQTT is started - waiting for further action")
             
             #leave main thread open untill mqtt is shutdown
-            #while managedRunning['mqttRunning']:
-            #    time.sleep(1)
-            #    print("also runing")
+            while managedRunning['mqttRunning']:
+                print("also runing")
+                if managedProcessed['mqttProcessed']:
+                    time.sleep(0.1)
+                else:
+                    print("this is the global msg: " + managedMsg['mqttMsg'])
             
             #mqtt is required to shutdown -> proicess is terminated and joined
-            print("Exited MQTT Server")
-            #p.terminate()
-            #p.join()
+            print("Exited after mqtt completion MQTT Server")
 
             print("Thread joined")
         except:
