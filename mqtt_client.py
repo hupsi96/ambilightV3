@@ -159,9 +159,10 @@ class mqtt_client:
             print(input)
             
             for i in range(len(strip)):
-                stripStorage[i][0] = input [0]
-                stripStorage[i][1] = input [1]
-                stripStorage[i][2] = input [2]
+                current0 = input [0]
+                current1 = input [1]
+                current2 = input [2]
+                stripStorage[i] = (current0,current1,current2,stripStorage[i][3],stripStorage[i][4])
             
         
     client = mqtt.Client()
