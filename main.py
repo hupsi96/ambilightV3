@@ -2,16 +2,7 @@
 #Has a mqtt (strip)
 from States.Off import Off
 from States.White import White
-<<<<<<< HEAD
-<<<<<<< HEAD
-from States.RGB import RGBW
-=======
 from States.RGB import RGB
->>>>>>> parent of 91f0c1d... refactor rgb to rgbw
-=======
-from States.RGB import RGB
->>>>>>> parent of 91f0c1d... refactor rgb to rgbw
-
 import board
 import neopixel
 import time
