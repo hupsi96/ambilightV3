@@ -12,6 +12,7 @@ from States.RGB import RGB
 
 manager = Manager()
 managedRunning = manager.dict({'mqttRunning' : True})
+managedRunningRGB = manager.dict({'rgbRunning' : False})
 
 # Choose an open pin connected to the Data In of the NeoPixel strip, i.e. board.D18
 # NeoPixels must be connected to D10, D12, D18 or D21 to work.
@@ -134,10 +135,11 @@ class mqtt_client:
         global off
         global stripStorage
         global p2
+        global managedRunningRGB
         
         global stripStorage
         
-        if p2.is_alive(self):
+        if managedRunningRGB['rgbRunning']:
             p2.terminate()
             p2.join()
             print("p2 died: ")
