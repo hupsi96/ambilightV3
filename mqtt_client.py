@@ -143,9 +143,9 @@ class mqtt_client:
             for i in range(len(strip)):
                 current = stripStorage[i]
                 print(int(msg.payload))
-                current[i][0] = current[i][0] * (int(msg.payload) /255)
-                current[i][1] = current[i][1] * (int(msg.payload) /255)
-                current[i][2] = current[i][2] * (int(msg.payload) /255)
+                current[i][0] = int(current[i][0] * (float(msg.payload) /255))
+                current[i][1] = int(current[i][1] * (float(msg.payload) /255))
+                current[i][2] = int(current[i][2] * (float(msg.payload) /255))
                 
             handler.handleRequest(rgb,msg,stripStorage)
         elif msg.topic == "ambilightLamp/set/rgb":
