@@ -87,6 +87,8 @@ def turn_on_2_test():
  
  
 while True:
+    print(pixels.n())
+    
     turn_on_2_test()
     
     turn_on_test()
