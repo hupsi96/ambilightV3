@@ -66,6 +66,7 @@ class mqtt_client:
             #leave main thread open untill mqtt is shutdown
             while managedRunning['mqttRunning']:
                 time.sleep(1)
+                print("also runing")
             
             #mqtt is required to shutdown -> proicess is terminated and joined
             print("Exited MQTT Server")
