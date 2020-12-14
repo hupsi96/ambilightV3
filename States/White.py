@@ -1,9 +1,9 @@
 import logging
 
 class White:
-
+    strip = None
     def __init__ (self, strip):
-        self.__strip = strip
+        self.strip = strip
 
     def entry(self, strip):
         print("White: entry")
