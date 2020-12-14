@@ -82,7 +82,7 @@ def turn_on_2_test():
                 pixels[57-j] = (0,0,0,currentTop + 3)
         pixels.show()
         time.sleep(0.1)
-    time.sleep(2)
+    time.sleep(5)
       
      
  
