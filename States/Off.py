@@ -19,7 +19,7 @@ class Off:
         
         if event.__class__.__name__ == "White": 
             stateHandler.setNewState(event,msg)
-        elif event.__class__.__name__ == "RGB":
+        elif event.__class__.__name__ == "RGBW":
             stateHandler.setNewState(event),msg
         elif event.__class__.__name__ == "Off":
             self.redundant()

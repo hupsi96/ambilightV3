@@ -22,7 +22,7 @@ class White:
         self.strip.show()
         print("White: handleRequest")
 
-        if event.__class__.__name__ == "RGB":
+        if event.__class__.__name__ == "RGBW":
             stateHandler.setNewState(event,msg)
         elif event.__class__.__name__ == "Off":
             stateHandler.setNewState(event,msg)

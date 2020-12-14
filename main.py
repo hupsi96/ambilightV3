@@ -2,7 +2,7 @@
 #Has a mqtt (strip)
 from States.Off import Off
 from States.White import White
-from States.RGB import RGB
+from States.RGBW import RGBW
 
 import board
 import neopixel
@@ -41,10 +41,10 @@ def main():
     
     #define States
     white = White(strip)
-    rgb = RGB(strip)
+    rgbw = RGBW(strip)
     off = Off(strip)
     
-    mqtt_client_instance = mqtt_client([white,rgb,off],strip)
+    mqtt_client_instance = mqtt_client([white,rgbw,off],strip)
 
 if __name__ == '__main__':
     main()
