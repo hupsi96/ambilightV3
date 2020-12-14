@@ -12,8 +12,20 @@ from States.RGB import RGB
 manager = Manager()
 managedRunning = manager.dict({'mqttRunning' : True})
 
-strip = None
-handler = None
+pixel_pin = board.D18
+    
+# The number of NeoPixels
+num_pixels = 58
+
+# The order of the pixel colors - RGB or GRB. Some NeoPixels have red and green reversed!
+# For RGBW NeoPixels, simply change the ORDER to RGBW or GRBW.
+ORDER = neopixel.GRBW
+
+strip = neopixel.NeoPixel(
+    pixel_pin, num_pixels, brightness=0.2, auto_write=False, pixel_order=ORDER
+)
+    
+handler = StateHandler(strip,[White,Rgb,Off])
 
 class mqtt_client:
 
