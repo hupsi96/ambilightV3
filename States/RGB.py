@@ -5,7 +5,7 @@ class RGB:
     def __init__ (self, strip):
         self.__strip = strip
 
-    def entry(self, strip, msg,stripStorage, strip):
+    def entry(self, strip, msg,stripStorage):
         print("RGB: entry")
 
     def exit(self):

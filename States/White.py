@@ -5,7 +5,7 @@ class White:
     def __init__ (self, strip):
         self.strip = strip
 
-    def entry(self, strip, msg,stripStorage, strip):
+    def entry(self, strip, msg,stripStorage):
         print("White: entry")
 
     def exit(self):
