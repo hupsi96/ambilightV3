@@ -105,7 +105,13 @@ class mqtt_client:
         client.subscribe("ambilightLamp/#")
         
         global strip
+        global stripStorage
+                
         strip.fill((0,0,0,255))
+        
+        for i in range(len(strip)):
+                stripStorage[i] = strip[i]
+                
         print("strip prepated")
         # Subscribing in on_connect() means that if we lose the connection and
         # reconnect then subscriptions will be renewed.
