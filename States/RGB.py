@@ -7,12 +7,17 @@ class RGB:
 
     def entry(self, strip, msg,stripStorage):
         print("RGB: entry")
+        #TODO: implement starting animation
+        for i in range(len(stripStorage)):
+            strip[i] = stripStorage[i]
+        strip.show()
 
     def exit(self):
         print("RGB: exit")
 
     def redundant(self,msg,stripStorage,strip):
-        print("No action required") #
+        print("No action required") 
+        #TODO: implement fade
         for i in range(len(stripStorage)):
             strip[i] = stripStorage[i]
         strip.show()
@@ -28,6 +33,3 @@ class RGB:
             stateHandler.setNewState(event,msg,stripStorage,strip)
         elif event.__class__.__name__ == "RGB":
             self.redundant(msg,stripStorage,strip)
-            
-            #self.strip.fill((0,0,0,int(msg.payload)))
-            #self.strip.show()
