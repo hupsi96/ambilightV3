@@ -82,7 +82,7 @@ class mqtt_client:
         
 
     # The callback for when a PUBLISH message is received from the server.
-    def on_message(client, userdata, msg):
+    def on_message(self, client, userdata, msg):
         
         global managedRunning
         
@@ -91,7 +91,7 @@ class mqtt_client:
         #if msg.topic == "ambilightLamp/off":
         #    managedRunning['mqttRunning'] = False
         if msg.topic == "ambilightLamp/set/brightness":
-            handler.handle_request(White(strip))
+            self.handler.handle_request(White(self.strip))
         #    if self.handler.getCurrentState() 
             
         
