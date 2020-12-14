@@ -33,7 +33,7 @@ rgb = RGB(strip)
 off = Off(strip)
 handler = StateHandler(strip,[white,rgb,off])
 
-stripStorage = [(0,0,0,0)]*num_pixels
+stripStorage = [(0,0,0,0,0)]*num_pixels #(r,g,b,w,brightness)
 
 class mqtt_client:
 
@@ -142,13 +142,9 @@ class mqtt_client:
         if msg.topic == "ambilightLamp/set/brightness":
             for i in range(len(strip)):
                 current = stripStorage[i]
-                print(int(msg.payload))
-                print(current[0])
-                print(current[0])
-                print(float(current[0]))
-                current[0] = int(float(current[0]) * (float(msg.payload) /255.0))
-                current[1] = int(float(current[1]) * (float(msg.payload) /255.0))
-                current[2] = int(float(current[2]) * (float(msg.payload) /255.0))
+                current[0] = int((float(current[0])/float(current[4])) * (float(msg.payload))
+                current[1] = int((float(current[1])/float(current[4])) * (float(msg.payload))
+                current[2] = int((float(current[2])/float(current[4])) * (float(msg.payload))
                 
             handler.handleRequest(rgb, msg, stripStorage, strip)
         elif msg.topic == "ambilightLamp/set/rgb":
