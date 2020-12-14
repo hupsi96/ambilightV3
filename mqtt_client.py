@@ -137,7 +137,7 @@ class mqtt_client:
             
         
         print(msg.topic+" "+str(msg.payload))
-        print(msg.payload)
+        print(str(msg.payload))
         #if msg.topic == "ambilightLamp/off":
         #    managedRunning['mqttRunning'] = False
         if msg.topic == "ambilightLamp/set/brightness":
