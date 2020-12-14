@@ -100,8 +100,13 @@ class mqtt_client:
     # The callback for when the client receives a CONNACK response from the server.
     def on_connect(client, userdata, flags, rc):
         #logging.info("Mqtt connection established - " +str(rc))
+        
         print("MQTT is connected")
         client.subscribe("ambilightLamp/#")
+        
+        global strip
+        strip.fill((0,0,0,255))
+        print("strip prepated")
         # Subscribing in on_connect() means that if we lose the connection and
         # reconnect then subscriptions will be renewed.
         
@@ -118,6 +123,7 @@ class mqtt_client:
         global stripStorage
         
         global stripStorage
+        
         if msg.topic == "ambilightLamp/light/set" and msg.payload == "OFF":
             for i in range(len(strip)):
                 stripStorage[i] = strip[i]
