@@ -168,6 +168,25 @@ class mqtt_client:
             stripStorage[i] = (strip[i][0],strip[i][1],strip[i][2],strip[i][3],stripStorage[i][4])
             handler.handleRequest(off,msg, stripStorageTransfer,strip)
             
+        elif msg.topic == "ambilightLamp/set/white":
+            payload = str(msg.payload)[2:]
+            payload = payload[:(len(payload)-1)]
+            
+            stripStorageTransfer = [(0,0,0,0)]*len(strip)
+            for i in range(len(strip)):
+                stripStorage[i] = (stripStorage[i][0],stripStorage[i][1],stripStorage[i][2],
+                                   int(payload),stripStorage[i][4])
+                current = stripStorage[i]
+                current0 = int((float(current[0])/float(current[4])) * float(msg.payload))
+                current1 = int((float(current[1])/float(current[4])) * float(msg.payload))
+                current2 = int((float(current[2])/float(current[4])) * float(msg.payload))
+                current = (current0,current1,current2,current[3])
+                
+                stripStorageTransfer[i] = (current[0],current[1],current[2],current[3])
+            handler.handleRequest(rgb, msg, stripStorageTransfer, strip)
+            
+            
+            
             
         
     client = mqtt.Client()
