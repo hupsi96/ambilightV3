@@ -118,7 +118,7 @@ class mqtt_client:
         global stripStorage
         
         global stripStorage
-        for i in strip.length():
+        for i in len(strip):
             stripStorage[i] = strip[i]
         
         print(msg.topic+" "+str(msg.payload))
