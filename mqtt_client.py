@@ -35,6 +35,7 @@ handler = StateHandler(strip,[white,rgb,off])
 
 stripStorage = [(0,0,0,0,0)]*num_pixels #(r,g,b,w,brightness)
 
+p2 = Process
 class mqtt_client:
 
 
@@ -132,8 +133,15 @@ class mqtt_client:
         global rgb
         global off
         global stripStorage
+        global p2
         
         global stripStorage
+        
+        if p2.is_alive():
+            p2.terminate()
+            p2.join()
+            print("p2 died: "+p2.is_alive())
+            
         
         if msg.topic == "ambilightLamp/light/set" and str(msg.payload) == "b'OFF'":
             for i in range(len(strip)):
@@ -174,8 +182,8 @@ class mqtt_client:
 
                 print("Thread not joined")
             except:
-                p.terminate()
-                p.join()
+                p2.terminate()
+                p2.join()
                 print("ERROR: Error in mqtt process -> terminated process")
             #handler.handleRequest(rgb, msg, stripStorageTransfer, strip)
         elif msg.topic == "ambilightLamp/set/rgb":
