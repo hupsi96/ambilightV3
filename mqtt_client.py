@@ -171,7 +171,7 @@ class mqtt_client:
                 p2 = Process(target=handler.handleRequest(rgb, msg, stripStorageTransfer, strip))
                 p2.start()
                 
-                print("MQTT is started - waiting for further action")
+                print("RGB Started :) ")
                 
                 #leave main thread open untill mqtt is shutdown
                 #while managedRunning['mqttRunning']:
@@ -179,11 +179,11 @@ class mqtt_client:
                 #    print("also runing")
                 
                 #mqtt is required to shutdown -> proicess is terminated and joined
-                print("Exited MQTT Server")
+                print("Exited RGB Server")
                 #p.terminate()
                 #p.join()
 
-                print("Thread not joined")
+                print("Thread is joined!")
             except:
                 p2.terminate()
                 p2.join()
@@ -218,10 +218,31 @@ class mqtt_client:
                 
                 stripStorageTransfer[i] = (stripStorage[i][0],stripStorage[i][1],stripStorage[i][2],stripStorage[i][3])
             handler.handleRequest(rgb, msg, stripStorageTransfer, strip)
-            
-            
-            
-            
+        elif msg.topic == "ambilightLamp/set/effect":
+            payload = str(msg.payload)[2:]
+            payload = payload[:(len(payload)-1)]
+            try:
+                #create Process
+                p2 = Process(target=handler.handleRequest(white, msg, stripStorageTransfer, strip))
+                p2.start()
+                
+                print("RGB Started :) ")
+                
+                #leave main thread open untill mqtt is shutdown
+                #while managedRunning['mqttRunning']:
+                #    time.sleep(1)
+                #    print("also runing")
+                
+                #mqtt is required to shutdown -> proicess is terminated and joined
+                print("Exited RGB Server")
+                #p.terminate()
+                #p.join()
+
+                print("Thread is joined!")
+            except:
+                p2.terminate()
+                p2.join()
+                print("ERROR: Error in mqtt process -> terminated process")
         
     client = mqtt.Client()
     client.on_connect = on_connect
