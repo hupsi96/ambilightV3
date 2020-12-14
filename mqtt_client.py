@@ -132,7 +132,7 @@ class mqtt_client:
         
         if msg.topic == "ambilightLamp/light/set" and str(msg.payload) == "b'OFF'":
             for i in range(len(strip)):
-                stripStorage[i] = strip[i]
+                stripStorage[i] = (strip[i][0],strip[i][1],strip[i][2],strip[i][3],stripStorage[i][4])
             
         
         print(msg.topic+" "+str(msg.payload))
