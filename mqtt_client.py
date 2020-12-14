@@ -86,12 +86,14 @@ class mqtt_client:
             #while True:
             #    print("Im still up and running")
             #    time.sleep(5)
-            time.sleep(10)
+            #time.sleep(10)
             #managedRunning['mqttRunning'] = False
-            p.terminate()
-            p.join()
+            #p.terminate()
+            #p.join()
         except:
             print("Exit Programm")
+            p.terminate()
+            p.join()
         
     def test(self):
         try:
