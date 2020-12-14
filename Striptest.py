@@ -7,7 +7,7 @@ import neopixel
 # Choose an open pin connected to the Data In of the NeoPixel strip, i.e. board.D18
 # NeoPixels must be connected to D10, D12, D18 or D21 to work.
 pixel_pin = board.D21
-pixel_pin2= board.D12
+pixel_pin2= board.D18
  
 # The number of NeoPixels
 num_pixels = 58
@@ -20,6 +20,9 @@ pixels = neopixel.NeoPixel(
     pixel_pin, num_pixels, brightness=0.2, auto_write=False, pixel_order=ORDER
 )
  
+pixels2 = neopixel.NeoPixel(
+    pixel_pin2, num_pixels, brightness=0.2, auto_write=False, pixel_order=ORDER
+)
  
 def wheel(pos):
     # Input a value 0 to 255 to get a color value.
@@ -49,6 +52,13 @@ def rainbow_cycle(wait):
             pixel_index = (i * 256 // num_pixels) + j
             pixels[i] = wheel(pixel_index & 255)
         pixels.show()
+        time.sleep(wait)
+def rainbow_cycle2(wait):
+    for j in range(255):
+        for i in range(num_pixels):
+            pixel_index = (i * 256 // num_pixels) + j
+            pixels2[i] = wheel(pixel_index & 255)
+        pixels2.show()
         time.sleep(wait)
  
 def turn_on_test():
@@ -146,3 +156,4 @@ while True:
     time.sleep(1)
     for i in range(20): 
         rainbow_cycle(0.001)  # rainbow cycle with 1ms delay per step
+        rainbow_cycle2(0.001)
