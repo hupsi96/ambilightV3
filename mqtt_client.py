@@ -139,14 +139,17 @@ class mqtt_client:
         print(str(msg.payload))
         #if msg.topic == "ambilightLamp/off":
         #    managedRunning['mqttRunning'] = False
+        stripStorageTransfer = [(0,0,0,0)]*len(strip)
         if msg.topic == "ambilightLamp/set/brightness":
             for i in range(len(strip)):
                 current = stripStorage[i]
-                current[0] = int((float(current[0])/float(current[4])) * (float(msg.payload))
-                current[1] = int((float(current[1])/float(current[4])) * (float(msg.payload))
-                current[2] = int((float(current[2])/float(current[4])) * (float(msg.payload))
+                current[0] = int((float(current[0])/float(current[4])) * float(msg.payload))
+                current[1] = int((float(current[1])/float(current[4])) * float(msg.payload))
+                current[2] = int((float(current[2])/float(current[4])) * float(msg.payload))
                 
-            handler.handleRequest(rgb, msg, stripStorage, strip)
+                stripStorageTransfer[i] = (current[0],current[1],current[2],current[3])
+                
+            handler.handleRequest(rgb, msg, stripStorageTransfer, strip)
         elif msg.topic == "ambilightLamp/set/rgb":
             print("rgb")
         #    if self.handler.getCurrentState() 
