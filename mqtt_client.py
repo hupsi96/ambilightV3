@@ -12,11 +12,16 @@ from States.RGB import RGB
 manager = Manager()
 managedRunning = manager.dict({'mqttRunning' : True})
 
+strip = None
+handler = None
+
 class mqtt_client:
 
+    global strip
+    global handler
+
     states = None
-    strip = None
-    handler = None
+    #handler = None
 
     def __init__(self, states, strip):
         #Global Variables
@@ -82,7 +87,7 @@ class mqtt_client:
         
 
     # The callback for when a PUBLISH message is received from the server.
-    def on_message(self, client, userdata, msg):
+    def on_message(client, userdata, msg):
         
         global managedRunning
         
@@ -91,7 +96,7 @@ class mqtt_client:
         #if msg.topic == "ambilightLamp/off":
         #    managedRunning['mqttRunning'] = False
         if msg.topic == "ambilightLamp/set/brightness":
-            self.handler.handle_request(White(self.strip))
+            self.handler.handle_request(White(strip))
         #    if self.handler.getCurrentState() 
             
         
