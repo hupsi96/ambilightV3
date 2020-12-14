@@ -146,6 +146,7 @@ class mqtt_client:
                     current[i][j] = current[i][j] * (int(msg.payload) /255)
             handler.handleRequest(rgb,msg,stripStorage)
         elif msg.topic == "ambilightLamp/set/rgb":
+            print("rgb")
         #    if self.handler.getCurrentState() 
             
         
