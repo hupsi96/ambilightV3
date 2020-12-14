@@ -157,10 +157,11 @@ class mqtt_client:
             print(payload)
             input = tuple(map(int,str(payload).split(',')))
             print(input)
-            #print("rgb")
-            #print(input)
-            #print(msg.payload[0])
-        #    if self.handler.getCurrentState() 
+            
+            for i in range(len(strip)):
+                stripStorage[i][0] = input [0]
+                stripStorage[i][1] = input [1]
+                stripStorage[i][2] = input [2]
             
         
     client = mqtt.Client()
