@@ -73,7 +73,7 @@ class mqtt_client:
             #p.terminate()
             #p.join()
 
-            print("Thread not joined")
+            print("Thread joined")
         except:
             p.terminate()
             p.join()
@@ -85,7 +85,7 @@ class mqtt_client:
             #    print("Im still up and running")
             #    time.sleep(5)
             time.sleep(10)
-            managedRunning['mqttRunning'] = False
+            #managedRunning['mqttRunning'] = False
             p.terminate()
             p.join()
         except:
