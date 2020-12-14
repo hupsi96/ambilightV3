@@ -19,9 +19,9 @@ class RGB:
         
         
         if event.__class__.__name__ == "White": 
-            stateHandler.setNewState(strip,msg,stripStorage)
+            stateHandler.setNewState(event,msg,stripStorage,strip)
         elif event.__class__.__name__ == "Off":
-            stateHandler.setNewState(strip,msg,stripStorage)
+            stateHandler.setNewState(event,msg,stripStorage,strip)
         elif event.__class__.__name__ == "RGB":
             for i in range(len(stripStorage)):
                 strip[i] = stripStorage[i]

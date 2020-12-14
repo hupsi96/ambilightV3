@@ -7,10 +7,10 @@ class StateHandler:
     strip = None
     events = None
 
-    def setNewState(self, state, msg,stripStorage):
+    def setNewState(self, state, msg,stripStorage,strip):
         self.currentState.exit()
         self.currentState = state
-        self.currentState.entry(self.strip,msg,stripStorage)
+        self.currentState.entry(strip,msg,stripStorage)
 
     def getCurrentState(self):
         return self.currentState

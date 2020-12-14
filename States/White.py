@@ -23,8 +23,8 @@ class White:
         print("White: handleRequest")
 
         if event.__class__.__name__ == "RGB":
-            stateHandler.setNewState(strip,msg,stripStorage)
+            stateHandler.setNewState(event,msg,stripStorage,strip)
         elif event.__class__.__name__ == "Off":
-            stateHandler.setNewState(strip,msg,stripStorage)
+            stateHandler.setNewState(event,msg,stripStorage,strip)
         elif event.__class__.__name__ == "White":
             self.redundant()
