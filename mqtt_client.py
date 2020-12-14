@@ -143,6 +143,7 @@ class mqtt_client:
             for i in range(len(strip)):
                 current = stripStorage[i]
                 print(int(msg.payload))
+                print(current[i])
                 print(current[i][0])
                 print(float(current[i][0]))
                 current[i][0] = int(float(current[i][0]) * (float(msg.payload) /255.0))
