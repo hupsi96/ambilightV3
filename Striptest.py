@@ -54,13 +54,12 @@ def turn_on_test():
     pixels[10] = (100,0,0,0)
     pixels.show()
     for i in range(58):
-        print (i)
         for j in range(i):
             current = pixels[j][3]
             if current < 255:
                 pixels[j] = (0,0,0,current + 1)
         pixels.show()
-        time.sleep(0.02)
+        time.sleep(0.003)
         
     for i in range(255):
         for j in range (58):
@@ -68,7 +67,7 @@ def turn_on_test():
             if current < 255:
                 pixels[j] = (0,0,0,current + 1)
         pixels.show()
-        time.sleep(0.02)
+        time.sleep(0.003)
      
       
      
