@@ -16,10 +16,16 @@ class RGB:
 
     def handleRequest(self, stateHandler, event, msg,stripStorage):
         print("RGB: handleRequest")
-
+        
+        
         if event.__class__.__name__ == "White": 
             stateHandler.setNewState(event,msg,stripStorage)
         elif event.__class__.__name__ == "Off":
             stateHandler.setNewState(event,msg,stripStorage)
         elif event.__class__.__name__ == "RGB":
-            self.redundant()
+            for i in range(len(stripStorage)):
+                self.strip[i] = stripStorage[i]
+            self.strip.show()
+            
+            #self.strip.fill((0,0,0,int(msg.payload)))
+            #self.strip.show()

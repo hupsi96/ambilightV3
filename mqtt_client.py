@@ -107,7 +107,7 @@ class mqtt_client:
         global strip
         global stripStorage
                 
-        strip.fill((0,0,0,255))
+        strip.fill((255,63,0,100))
         
         for i in range(len(strip)):
                 stripStorage[i] = strip[i]
@@ -133,7 +133,6 @@ class mqtt_client:
         if msg.topic == "ambilightLamp/light/set" and str(msg.payload) == "b'OFF'":
             for i in range(len(strip)):
                 stripStorage[i] = strip[i]
-                print(stripStorage[i])
             
         
         print(msg.topic+" "+str(msg.payload))
@@ -141,7 +140,12 @@ class mqtt_client:
         #if msg.topic == "ambilightLamp/off":
         #    managedRunning['mqttRunning'] = False
         if msg.topic == "ambilightLamp/set/brightness":
-            handler.handleRequest(white,msg,stripStorage)
+            for i in range(len(strip)):
+                current = stripStorage[i]
+                for j in range(len(current[i])-1):
+                    current[i][j] = current[i][j] * (int(msg.payload) /255)
+            handler.handleRequest(rgb,msg,stripStorage)
+        elif msg.topic == "ambilightLamp/set/rgb":
         #    if self.handler.getCurrentState() 
             
         
