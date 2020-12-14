@@ -155,7 +155,8 @@ class mqtt_client:
             payload = str(msg.payload)[2:]
             payload = payload[:(len(payload)-1)]
             print(payload)
-            #input = tuple(map(int,str(msg.payload).split(',')))
+            input = tuple(map(int,str(payload).split(',')))
+            print(input)
             #print("rgb")
             #print(input)
             #print(msg.payload[0])
