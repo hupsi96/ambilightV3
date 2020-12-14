@@ -7,7 +7,7 @@ class White:
 
     def entry(self, strip, msg,stripStorage):
         while True:
-            self.rainbow_cycle(0.003)
+            self.rainbow_cycle(0.003,strip)
         print("White: entry")
 
     def exit(self):
