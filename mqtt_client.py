@@ -96,7 +96,7 @@ class mqtt_client:
         #if msg.topic == "ambilightLamp/off":
         #    managedRunning['mqttRunning'] = False
         if msg.topic == "ambilightLamp/set/brightness":
-            self.handler.handle_request(White(strip))
+            handler.handle_request(White(strip))
         #    if self.handler.getCurrentState() 
             
         
