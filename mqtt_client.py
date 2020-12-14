@@ -27,7 +27,7 @@ strip = neopixel.NeoPixel(
     pixel_pin, num_pixels, brightness=0.2, auto_write=False, pixel_order=ORDER
 )
     
-handler = StateHandler(strip,[White,Rgb,Off])
+handler = StateHandler(strip,[White,RGB,Off])
 
 class mqtt_client:
 
