@@ -72,6 +72,7 @@ def turn_on_test():
     #print(pixels[57])
      
 def turn_on_2_test():
+    pixels.deinit()
     for i in range(31):
         for j in range(i):
             currentBottom = pixels[j][3]
