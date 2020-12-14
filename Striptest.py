@@ -51,7 +51,7 @@ def rainbow_cycle(wait):
         time.sleep(wait)
  
 def turn_on_test():
-    pixels.fill(0,0,0,0)
+    pixels.fill((0,0,0,0))
     #pixels[10] = (100,0,0,0)
     #pixels.show()
     for i in range(58):
@@ -73,7 +73,7 @@ def turn_on_test():
     #print(pixels[57])
      
 def turn_on_2_test():
-    pixels.fill(0,0,0,0)
+    pixels.fill((0,0,0,0))
     for i in range(31):
         for j in range(i):
             currentBottom = pixels[j][3]
