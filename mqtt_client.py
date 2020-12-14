@@ -81,9 +81,13 @@ class mqtt_client:
 
         #current Test status to leave main thread open after process termination - may be removed in future releases
         try:
-            while True:
-                print("Im still up and running")
-                time.sleep(5)
+            #while True:
+            #    print("Im still up and running")
+            #    time.sleep(5)
+            time.sleep(10)
+            managedRunning['mqttRunning'] = False
+            p.terminate()
+            p.join()
         except:
             print("Exit Programm")
         
@@ -150,8 +154,30 @@ class mqtt_client:
                 current = (current0,current1,current2,current[3])
                 
                 stripStorageTransfer[i] = (current[0],current[1],current[2],current[3])
+            
+            try:
+                #create Process
+                p2 = Process(target=handler.handleRequest(rgb, msg, stripStorageTransfer, strip))
+                p2.start()
                 
-            handler.handleRequest(rgb, msg, stripStorageTransfer, strip)
+                print("MQTT is started - waiting for further action")
+                
+                #leave main thread open untill mqtt is shutdown
+                #while managedRunning['mqttRunning']:
+                #    time.sleep(1)
+                #    print("also runing")
+                
+                #mqtt is required to shutdown -> proicess is terminated and joined
+                print("Exited MQTT Server")
+                #p.terminate()
+                #p.join()
+
+                print("Thread not joined")
+            except:
+                p.terminate()
+                p.join()
+                print("ERROR: Error in mqtt process -> terminated process")
+            #handler.handleRequest(rgb, msg, stripStorageTransfer, strip)
         elif msg.topic == "ambilightLamp/set/rgb":
             payload = str(msg.payload)[2:]
             payload = payload[:(len(payload)-1)]
