@@ -71,11 +71,23 @@ def turn_on_test():
         #print(i)
     #print(pixels[57])
      
+def turn_on_2_test():
+    for i in range(29):
+        for j in range(i):
+            currentBottom = pixels[j][3]
+            currentTop = pixels[58-j][3]
+            if currentBottom < 255:
+                pixels[j] = (0,0,0,currentBottom + 3)
+            if currentTop < 255:
+                pixels[58-j] = (0,0,0,currentTop + 3)
+        pixels.show()
+        time.sleep(0.1)
       
      
  
  
 while True:
+    turn_on_2_test()
     
     turn_on_test()
     
