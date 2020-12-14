@@ -68,7 +68,7 @@ def turn_on_test():
                 pixels[j] = (0,0,0,current + 1)
         pixels.show()
         time.sleep(0.003)
-        print(j)
+        print(i)
     print(pixels[57])
      
       
