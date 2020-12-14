@@ -176,13 +176,9 @@ class mqtt_client:
             for i in range(len(strip)):
                 stripStorage[i] = (stripStorage[i][0],stripStorage[i][1],stripStorage[i][2],
                                    int(payload),stripStorage[i][4])
-                current = stripStorage[i]
-                current0 = int((float(current[0])/float(current[4])) * float(msg.payload))
-                current1 = int((float(current[1])/float(current[4])) * float(msg.payload))
-                current2 = int((float(current[2])/float(current[4])) * float(msg.payload))
-                current = (current0,current1,current2,current[3])
                 
-                stripStorageTransfer[i] = (current[0],current[1],current[2],current[3])
+                
+                stripStorageTransfer[i] = (stripStorage[i][0],stripStorage[i][1],stripStorage[i][2],stripStorage[i][3])
             handler.handleRequest(rgb, msg, stripStorageTransfer, strip)
             
             
