@@ -5,7 +5,9 @@ class Off:
     def __init__ (self, strip):
         self.__strip = strip
 
-    def entry(self, msg,stripStorage):
+    def entry(self, msg,stripStorage, strip):
+        strip.fill((0,0,0,0))
+        strip.show()
         print("Off: entry")
 
     def exit(self):

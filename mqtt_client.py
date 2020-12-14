@@ -163,6 +163,11 @@ class mqtt_client:
                 current1 = input [1]
                 current2 = input [2]
                 stripStorage[i] = (current0,current1,current2,stripStorage[i][3],stripStorage[i][4])
+                
+        elif msg.topic == "ambilightLamp/light/set":
+            stripStorage[i] = (strip[i][0],strip[i][1],strip[i][2],strip[i][3],stripStorage[i][4])
+            handler.handleRequest(off, msg, stripStorageTransfer, strip)
+            
             
         
     client = mqtt.Client()
