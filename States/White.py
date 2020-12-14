@@ -5,7 +5,7 @@ class White:
     def __init__ (self, strip):
         self.strip = strip
 
-    def entry(self, strip):
+    def entry(self, strip, msg):
         print("White: entry")
 
     def exit(self):
@@ -14,7 +14,7 @@ class White:
     def redundant(self):
         print("No action required")
 
-    def handleRequest(self, stateHandler, event):
+    def handleRequest(self, stateHandler, event, msg):
         self.strip.fill((0,0,0,255))
         self.strip.show()
         print("White: handleRequest")

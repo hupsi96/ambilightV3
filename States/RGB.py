@@ -5,7 +5,7 @@ class RGB:
     def __init__ (self, strip):
         self.__strip = strip
 
-    def entry(self, strip):
+    def entry(self, strip, msg):
         print("RGB: entry")
 
     def exit(self):
@@ -14,7 +14,7 @@ class RGB:
     def redundant(self):
         print("No action required")
 
-    def handleRequest(self, stateHandler, event):
+    def handleRequest(self, stateHandler, event, msg):
         print("RGB: handleRequest")
 
         if event.__class__.__name__ == "White": 
