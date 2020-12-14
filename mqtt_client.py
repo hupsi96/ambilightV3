@@ -33,6 +33,8 @@ rgb = RGB(strip)
 off = Off(strip)
 handler = StateHandler(strip,[white,rgb,off])
 
+stripStorage = [(0,0,0,0)]*num_pixels
+
 class mqtt_client:
 
 
@@ -92,6 +94,11 @@ class mqtt_client:
         except AttributeError:
             print("No Handler set - connot test class")
         
+    def storeStrip(self, strip):
+        global stripStorage
+        for i in strip.length():
+            stripStorage[i] = strip[i]
+            
         
     #Setup MQTT:
                         
@@ -113,6 +120,9 @@ class mqtt_client:
         global white
         global rgb
         global off
+        global stripStorage
+        
+        storeStrip(strip)
         
         print(msg.topic+" "+str(msg.payload))
         print(msg.payload)
