@@ -10,6 +10,7 @@ from States.Off import Off
 from States.White import White
 from States.RGB import RGB
 
+
 manager = Manager()
 managedRunning = manager.dict({'mqttRunning' : True})
 managedRunningRGB = manager.dict({'rgbRunning' : False})
@@ -228,12 +229,14 @@ class mqtt_client:
                 p2 = Process(target=handler.handleRequest(white, msg, stripStorageTransfer, strip))
                 p2.start()
                 
+                p3 = Process(target=self.client.loop_forever)
+                p3.start()
                 print("RGB Started :) ")
                 
                 #leave main thread open untill mqtt is shutdown
-                #while managedRunning['mqttRunning']:
-                #    time.sleep(1)
-                #    print("also runing")
+                while managedRunning['mqttRunning']:
+                    time.sleep(1)
+                    print("also runing")
                 
                 #mqtt is required to shutdown -> proicess is terminated and joined
                 print("Exited RGB Server")
