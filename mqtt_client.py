@@ -15,7 +15,7 @@ manager = Manager()
 managerDict = manager.dict()
 managerDict['mqttRunning'] = True
 managerDict['mqttMsg'] = "Not set yet"
-managerDict['mqttProcessed'] = False
+managerDict['mqttProcessed'] = True
 
 #managedRunning = manager.dict({'mqttRunning' : True})
 #managedMsg = manager.dict({'mqttMsg' : ""})
@@ -55,11 +55,9 @@ class mqtt_client:
 
     def __init__(self, states, strp):
         #Global Variables
-        global managedRunning
+        global managerDict
         global strip
         global handler
-        global managedMsg
-        global managedProcessed
         
         #own Variables
         self.states = states # TODO: nötig?
@@ -72,40 +70,40 @@ class mqtt_client:
         
         try:
             #create Process
-            p = Process(target=self.client.loop_forever)
+            p = Process(target=self.client.loop_forever,args=(managerDict,))
             p.start()
             
             print("MQTT is started - waiting for further action")
             
             #leave main thread open untill mqtt is shutdown
-            while managedRunning['mqttRunning']:
+            while managerDict['mqttRunning']:
                 print("also runing")
-                if managedProcessed['mqttProcessed']:
-                    time.sleep(0.1)
+                if managerDict['mqttProcessed']:
+                    time.sleep(0.5)
                 else:
-                    print("this is the global msg: " + managedMsg['mqttMsg'])
+                    print("this is the global msg: " + managerDict['mqttMsg'])
             
             #mqtt is required to shutdown -> proicess is terminated and joined
-            print("Exited after mqtt completion MQTT Server")
+            #print("Exited after mqtt completion MQTT Server")
 
-            print("Thread joined")
+            #print("Thread joined")
         except:
             p.terminate()
             p.join()
             print("ERROR: Error in mqtt process -> terminated process")
 
         #current Test status to leave main thread open after process termination - may be removed in future releases
-        try:
-            while True:
-                time.sleep(5)
+        #try:
+        #    while True:
+        #        time.sleep(5)
             #time.sleep(10)
             #managedRunning['mqttRunning'] = False
             #p.terminate()
             #p.join()
-        except:
-            print("Exit Programm")
-            p.terminate()
-            p.join()
+        #except:
+        #    print("Exit Programm")
+        #    p.terminate()
+        #    p.join()
         
     def test(self):
         try:
