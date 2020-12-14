@@ -2,7 +2,7 @@
 #Has a mqtt (strip)
 from States.Off import Off
 from States.White import White
-from States.RGBW import RGBW
+from States.RGB import RGBW
 
 import board
 import neopixel

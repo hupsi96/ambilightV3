@@ -8,7 +8,7 @@ from multiprocessing import Process, Manager
 from StateHandler import StateHandler
 from States.Off import Off
 from States.White import White
-from States.RGBW import RGBW
+from States.RGB import RGBW
 
 
 manager = Manager()
