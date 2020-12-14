@@ -118,9 +118,9 @@ class mqtt_client:
         global stripStorage
         
         global stripStorage
-        #if msg.topic != 
-        for i in range(len(strip)):
-            stripStorage[i] = strip[i]
+        if msg.topic == "ambilightLamp/light/set" and msg.payload == "OFF":
+            for i in range(len(strip)):
+                stripStorage[i] = strip[i]
         
         print(msg.topic+" "+str(msg.payload))
         print(msg.payload)
