@@ -21,7 +21,7 @@ class mqtt_client:
     states = None
     #handler = None
 
-    def __init__(self, states, strip):
+    def __init__(self, states, strp):
         #Global Variables
         global managedRunning
         global strip
@@ -29,8 +29,8 @@ class mqtt_client:
         
         #own Variables
         self.states = states
-        self.strip = strip
-        self.handler = StateHandler(strip, states)
+        self.strip = strp
+        self.handler = StateHandler(strp, states)
         
         #Testing
         self.test()
