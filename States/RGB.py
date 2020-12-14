@@ -11,8 +11,12 @@ class RGB:
     def exit(self):
         print("RGB: exit")
 
-    def redundant(self):
-        print("No action required")
+    def redundant(self,msg,stripStorage,strip):
+        print("No action required") #
+        for i in range(len(stripStorage)):
+                strip[i] = stripStorage[i]
+            strip.show()
+        
 
     def handleRequest(self, stateHandler, event, msg,stripStorage, strip):
         print("RGB: handleRequest")
@@ -23,9 +27,7 @@ class RGB:
         elif event.__class__.__name__ == "Off":
             stateHandler.setNewState(event,msg,stripStorage,strip)
         elif event.__class__.__name__ == "RGB":
-            for i in range(len(stripStorage)):
-                strip[i] = stripStorage[i]
-            strip.show()
+            self.redundant(msg,stripStorage,strip)
             
             #self.strip.fill((0,0,0,int(msg.payload)))
             #self.strip.show()
