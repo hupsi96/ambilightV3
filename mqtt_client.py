@@ -70,10 +70,10 @@ class mqtt_client:
             
             #mqtt is required to shutdown -> proicess is terminated and joined
             print("Exited MQTT Server")
-            p.terminate()
-            p.join()
+            #p.terminate()
+            #p.join()
 
-            print("Thread joined")
+            print("Thread not joined")
         except:
             p.terminate()
             p.join()
