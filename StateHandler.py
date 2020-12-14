@@ -16,7 +16,7 @@ class StateHandler:
         return self.currentState
 
     def handleRequest(self,event, msg, stripStorage, strip):
-        self.currentState.handleRequest(self,event, msg, stripStorage)
+        self.currentState.handleRequest(self,event, msg, stripStorage, strip)
 
     def __init__ (self, strip, events):
         self.strip = strip
