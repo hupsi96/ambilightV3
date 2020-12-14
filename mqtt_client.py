@@ -155,6 +155,7 @@ class mqtt_client:
             input = tuple(map(int,str(msg.payload).split(',')))
             print("rgb")
             print(input)
+            print(msg.payload[0])
         #    if self.handler.getCurrentState() 
             
         
