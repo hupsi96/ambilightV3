@@ -93,11 +93,6 @@ class mqtt_client:
             self.handler.handleRequest(Off(self.strip))
         except AttributeError:
             print("No Handler set - connot test class")
-        
-    def storeStrip(self, strip):
-        global stripStorage
-        for i in strip.length():
-            stripStorage[i] = strip[i]
             
         
     #Setup MQTT:
@@ -122,7 +117,9 @@ class mqtt_client:
         global off
         global stripStorage
         
-        storeStrip(strip)
+        global stripStorage
+        for i in strip.length():
+            stripStorage[i] = strip[i]
         
         print(msg.topic+" "+str(msg.payload))
         print(msg.payload)
