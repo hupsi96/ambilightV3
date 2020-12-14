@@ -82,7 +82,19 @@ def turn_on_2_test():
                 pixels[57-j] = (0,0,0,currentTop + 3)
         pixels.show()
         time.sleep(0.1)
-    time.sleep(5)
+    #time.sleep(5)
+    
+    for i in range(255):
+        for j in range(31):
+            currentBottom = pixels[j][3]
+            currentTop = pixels[57-j][3]
+            if currentBottom < 255:
+                pixels[j] = (0,0,0,currentBottom + 1)
+            if currentTop < 255:
+                pixels[57-j] = (0,0,0,currentTop + 1)
+        pixels.show()
+        time.sleep(0.1)
+            
       
      
  
