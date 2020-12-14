@@ -110,7 +110,7 @@ class mqtt_client:
         strip.fill((255,63,0,100))
         
         for i in range(len(strip)):
-                stripStorage[i] = strip[i]
+                stripStorage[i] = (strip[i][0],strip[i][1],strip[i][2],strip[i][3],255)
                 
         print("strip prepated")
         # Subscribing in on_connect() means that if we lose the connection and
