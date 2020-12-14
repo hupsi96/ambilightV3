@@ -14,7 +14,7 @@ class RGB:
     def redundant(self):
         print("No action required")
 
-    def handleRequest(self, stateHandler, event, msg,stripStorage):
+    def handleRequest(self, stateHandler, event, msg,stripStorage, strip):
         print("RGB: handleRequest")
         
         
@@ -24,8 +24,8 @@ class RGB:
             stateHandler.setNewState(event,msg,stripStorage)
         elif event.__class__.__name__ == "RGB":
             for i in range(len(stripStorage)):
-                self.strip[i] = stripStorage[i]
-            self.strip.show()
+                strip[i] = stripStorage[i]
+            strip.show()
             
             #self.strip.fill((0,0,0,int(msg.payload)))
             #self.strip.show()

@@ -14,7 +14,7 @@ class White:
     def redundant(self):
         print("No action required")
 
-    def handleRequest(self, stateHandler, event, msg,stripStorage):
+    def handleRequest(self, stateHandler, event, msg,stripStorage, strip):
         #self.strip.fill((0,0,0,255))
         #self.strip.show()
         

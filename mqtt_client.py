@@ -150,7 +150,7 @@ class mqtt_client:
                 current[1] = int(float(current[1]) * (float(msg.payload) /255.0))
                 current[2] = int(float(current[2]) * (float(msg.payload) /255.0))
                 
-            handler.handleRequest(rgb,msg,stripStorage)
+            handler.handleRequest(rgb,msg,stripStorage, strip)
         elif msg.topic == "ambilightLamp/set/rgb":
             print("rgb")
         #    if self.handler.getCurrentState() 
