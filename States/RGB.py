@@ -23,8 +23,8 @@ class RGB:
         for i in range(len(stripStorage)):
             strip[i] = stripStorage[i]
         strip.show()
-        while True:
-            self.rainbow_cycle(0.005,strip)
+        #while True:
+        #    self.rainbow_cycle(0.005,strip)
         
     ### TEST
     def wheel(self, pos):
