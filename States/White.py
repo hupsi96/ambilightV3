@@ -19,6 +19,7 @@ class White:
         self.strip.show()
         
         self.strip.fill((0,0,0,int(msg.payload)))
+        self.strip.show()
         print("White: handleRequest")
 
         if event.__class__.__name__ == "RGB":
